@@ -4,10 +4,12 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/salads-source/go_http_server/db"
 	"github.com/salads-source/go_http_server/models"
 )
 
 func main() {
+	db.InitDB()
 	server := gin.Default()
 
 	server.GET("/events", getEvents)
@@ -30,6 +32,8 @@ func createEvent(context *gin.Context) {
 
 	event.ID = 1
 	event.UserID = 1
+
+	event.Save()
 
 	context.JSON(http.StatusCreated, gin.H{"message": "Event created!", "event": event})
 }
