@@ -5,6 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/salads-source/go_http_server/models"
+	"github.com/salads-source/go_http_server/utils"
 )
 
 func signup(context *gin.Context) {
@@ -44,5 +45,12 @@ func login(context *gin.Context) {
 		return
 	}
 
-	context.JSON(http.StatusCreated, gin.H{"message": "Login Successfully"})
+	token, err := utils.GenerateToken(user.Email, user.ID)
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not authenticate user"})
+		return
+	}
+
+	context.JSON(http.StatusCreated, gin.H{"message": "Login Successfully", "token": token})
 }
