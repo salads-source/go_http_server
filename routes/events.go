@@ -115,5 +115,4 @@ func deleteEvent(context *gin.Context) {
 	}
 
 	context.JSON(http.StatusOK, gin.H{"message": "event deleted successfully"})
-
 }

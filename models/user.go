@@ -1,6 +1,8 @@
 package models
 
 import (
+	"errors"
+
 	"github.com/salads-source/go_http_server/db"
 	"github.com/salads-source/go_http_server/utils"
 )
@@ -37,4 +39,24 @@ func (u User) Save() error {
 
 	u.ID = userId
 	return err
+}
+
+func (u User) ValidateCredentials() error {
+	query := "SELECT email, password FROM users WHERE email = ?"
+	row := db.DB.QueryRow(query, u.Email)
+
+	var retrievedPassword string
+	err := row.Scan(&retrievedPassword)
+
+	if err != nil {
+		return errors.New("Invalid Credentials")
+	}
+
+	passwordIsValid := utils.CheckPasswordHash(u.Password, retrievedPassword)
+
+	if !passwordIsValid {
+		return errors.New("Invalid credentials")
+	}
+
+	return nil
 }
