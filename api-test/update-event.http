@@ -1,11 +1,10 @@
-PUT http://localhost:8080/events/3
+PUT http://localhost:8080/events/12
 content-type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbkB0ZXN0My5jb20iLCJleHAiOjE3NjQzNTE2NzcsInVzZXJJZCI6M30.YxKoZI1A0lBplVi43UeTM68GqBm61bMjJOtleg1eXfA
 
 {
-
-  "Name": "test sddsfdsfdsf",
-  "Description": "a sdfds event",
-  "Location": "test sdfsdff",
-  "DateTime": "2025-01-01T15:30:00Z",
-  "UserID": 1
+  "name": "tesadsaddsadsasdas",
+  "description": "a sdfds event",
+  "location": "test sdfsdff",
+  "dateTime": "2025-01-01T15:30:00Z"
 }
