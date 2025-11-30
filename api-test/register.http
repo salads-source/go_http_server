@@ -1,2 +1,2 @@
-POST http://localhost:8080/events/1/register
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbkB0ZXN0My5jb20iLCJleHAiOjE3NjQzNTg5NTQsInVzZXJJZCI6MX0.TT0xqLLVQB8UxoMzkloMXbc03ApKN_CIJ2selxcQKVw
+POST http://localhost:8080/events/2/register
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJvbkB0ZXN0My5jb20iLCJleHAiOjE3NjQ1MjMzOTgsInVzZXJJZCI6MX0.gicthrkJ6uCrIbaTuFreVEH-f7RbEzl4I6vPOv5SGBQ

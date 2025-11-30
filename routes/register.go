@@ -8,6 +8,19 @@ import (
 	"github.com/salads-source/go_http_server/models"
 )
 
+func getRegistrations(context *gin.Context) {
+	var registrations []models.Registration
+
+	registrations, err := models.GetAllRegistrations()
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not fetch registrations"})
+		return
+	}
+
+	context.JSON(http.StatusOK, gin.H{"message": "Registrations fetched successfully", "registrations": registrations})
+}
+
 func registerForEvent(context *gin.Context) {
 	userId := context.GetInt64("userId")
 	eventId, err := strconv.ParseInt(context.Param("id"), 10, 64)
