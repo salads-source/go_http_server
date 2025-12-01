@@ -1,0 +1,2 @@
+GET http://localhost:8080/registrations/2
+# content-type: application/json

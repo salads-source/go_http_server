@@ -9,6 +9,7 @@ func RegisterRoutes(server *gin.Engine) {
 	server.GET("/events", getEvents)
 	server.GET("/events/:id", getEvent)
 	server.GET("/registrations", getRegistrations)
+	server.GET("/registrations/:id", getRegistration)
 
 	authenticated := server.Group("/")
 	authenticated.Use(middlewares.Authenticate)
