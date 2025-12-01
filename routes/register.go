@@ -21,6 +21,24 @@ func getRegistrations(context *gin.Context) {
 	context.JSON(http.StatusOK, gin.H{"message": "Registrations fetched successfully", "registrations": registrations})
 }
 
+func getRegistration(context *gin.Context) {
+	registrationId, err := strconv.ParseInt(context.Param("id"), 10, 64)
+
+	if err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"message": "Invalid registration Id"})
+		return
+	}
+
+	registration, err := models.GetRegistrationById(registrationId)
+
+	if err != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"message": "Could not fetch registration, try again later"})
+		return
+	}
+
+	context.JSON(http.StatusOK, registration)
+}
+
 func registerForEvent(context *gin.Context) {
 	userId := context.GetInt64("userId")
 	eventId, err := strconv.ParseInt(context.Param("id"), 10, 64)

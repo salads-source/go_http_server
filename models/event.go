@@ -146,6 +146,22 @@ func GetAllRegistrations() ([]Registration, error) {
 	return registrations, nil
 }
 
+func GetRegistrationById(registrationId int64) (Registration, error) {
+	query := "SELECT * FROM registrations WHERE id = ?"
+
+	row := db.DB.QueryRow(query, registrationId)
+
+	var registration Registration
+
+	err := row.Scan(&registration.ID, &registration.EventID, &registration.UserID)
+
+	if err != nil {
+		return Registration{}, err
+	}
+
+	return registration, nil
+}
+
 func (event Event) Register(userId int64) error {
 	query := "INSERT INTO registrations(event_id, user_id) VALUES (?, ?)"
 	stmt, err := db.DB.Prepare(query)
